@@ -1,0 +1,4 @@
+>myfile.txt 			- Create text file
+npm install <package> -g	- install package globally
+create-react-app		- create react app with dependencies installed
+npm start 			- start react app
