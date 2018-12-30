@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+import {Person, UserInput, UserOutput} from './Person/Person';
 class App extends Component {
   state = {
     persons: [
       { name:'Ziao', age: 28},
       { name:'Chen', age:34}
+    ],
+    assign_1:[
+      {username:'Tracy'}
     ]
   }
 
@@ -28,11 +31,31 @@ class App extends Component {
     })
   }
 
+  usernameChangedHandler = (event) => {
+    this.setState({
+      assign_1:[
+        {username: event.target.value}
+      ]
+    })
+  }
+
   render() {
+
+    // inline style
+    const style = {
+      backgroundColor: 'white',
+      font:'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1> Hi, I am a React App </h1>
-        <button onClick={() => this.switchNameHandler("Tracy")}>Switch Name</button>
+        <button
+          style = {style}
+          onClick={() => this.switchNameHandler("Tracy")}>Switch Name</button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
@@ -41,6 +64,12 @@ class App extends Component {
         <Person
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}>This is shit</Person>
+        <UserInput changed = {this.usernameChangedHandler}></UserInput>
+        
+        <UserOutput
+          username={this.state.assign_1[0].username}></UserOutput>
+        <UserOutput></UserOutput>
+
       </div>
     );
     // return React.createElement('div',{className:'App'},React.createElement('h1',null,"Hi, I am a React App"))
